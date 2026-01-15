@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="云效：打造高效能驱动的数字化研发体系 - HTML PPT" />
+  <title>云效：打造高效能驱动的数字化研发体系</title>
+
+  <!-- Fonts (CDN) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Reveal.js (CDN) -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" /> -->
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/reveal.js/5.2.1/reveal.css" />
+
+  <style>
+    :root{
+      --bg0: #070A12;
+      --bg1: #0B1222;
+      --bg2: #0E1B33;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --primary: #3B82F6;
+      --accent: #22C55E;
+      --warn: #F59E0B;
+      --danger: #EF4444;
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 12px;
+    }
+
+    /* Reveal base overrides */
+    .reveal{
+      font-family: "Noto Sans SC", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+    }
+
+    .reveal .slides{
+      text-align: left;
+    }
+
+    .reveal .slides section{
+      box-sizing: border-box;
+    }
+
+    /* Full-deck background */
+    .reveal-viewport{
+      background:
+        radial-gradient(1100px 700px at 12% 18%, rgba(59,130,246,.25), transparent 55%),
+        radial-gradient(900px 600px at 85% 30%, rgba(34,197,94,.18), transparent 60%),
+        radial-gradient(900px 700px at 60% 92%, rgba(245,158,11,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 50%, var(--bg2));
+    }
+
+    /* Typography */
+    .reveal h1, .reveal h2, .reveal h3{
+      letter-spacing: .2px;
+      text-transform: none;
+      margin: 0 0 .45em 0;
+      line-height: 1.15;
+    }
+    .reveal h1{ font-size: 2.45rem; }
+    .reveal h2{ font-size: 1.85rem; }
+    .reveal h3{ font-size: 1.25rem; }
+    .reveal p{ margin: .35em 0; color: var(--muted); font-size: 1.02rem; }
+    .reveal ul{ margin: .4em 0 0 0; padding-left: 1.1em; }
+    .reveal li{ margin: .25em 0; color: var(--muted); font-size: 1.02rem; }
+    .reveal strong{ color: var(--text); font-weight: 700; }
+
+    /* Layout helpers */
+    .grid-2{ display: grid; grid-template-columns: 1.05fr .95fr; gap: 22px; align-items: stretch; }
+    .grid-2.equal{ grid-template-columns: 1fr 1fr; }
+    .grid-3{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .grid-4{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    .card{
+      background: linear-gradient(180deg, var(--card2), var(--card));
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before{
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: radial-gradient(650px 220px at 15% 0%, rgba(59,130,246,.18), transparent 55%);
+      opacity: .9;
+      pointer-events: none;
+    }
+    .card > *{ position: relative; }
+
+    .badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .kicker{
+      font-size: .95rem;
+      color: var(--faint);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .kicker .dot{
+      width: 10px; height: 10px; border-radius: 999px;
+      background: var(--primary);
+      box-shadow: 0 0 0 6px rgba(59,130,246,.12);
+    }
+
+    .slide-head{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .slide-title{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,.15);
+      color: var(--faint);
+      font-size: .85rem;
+    }
+
+    .pill .bar{
+      width: 20px; height: 6px; border-radius: 99px;
+      background: linear-gradient(90deg, var(--primary), rgba(34,197,94,.95));
+    }
+
+    /* Icon container */
+    .icon{
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      display: grid;
+      place-items: center;
+    }
+    .icon svg{ width: 26px; height: 26px; opacity: .95; }
+
+    /* Cover */
+    .cover{
+      padding: 10px 10px;
+    }
+    .cover .hero{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: center;
+      min-height: 560px;
+    }
+
+    .cover .title{
+      font-size: 2.8rem;
+      margin: 0 0 10px 0;
+    }
+    .cover .subtitle{
+      font-size: 1.25rem;
+      color: var(--muted);
+      margin: 0 0 18px 0;
+    }
+    .cover .meta{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .cover .right{
+      position: relative;
+      height: 100%;
+      display: grid;
+      align-items: center;
+    }
+
+    .cover .orb{
+      width: 300px;
+      height: 300px;
+      border-radius: 999px;
+      margin: 0 auto;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 45%),
+        radial-gradient(circle at 50% 55%, rgba(59,130,246,.45), rgba(34,197,94,.15) 55%, transparent 70%),
+        radial-gradient(circle at 70% 30%, rgba(34,197,94,.28), transparent 55%);
+      filter: blur(.2px);
+      box-shadow: 0 40px 120px rgba(0,0,0,.55);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .cover .right .ring{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: .8;
+      background:
+        radial-gradient(closest-side, transparent 78%, rgba(255,255,255,.12) 79%, transparent 82%),
+        radial-gradient(closest-side, transparent 62%, rgba(255,255,255,.10) 63%, transparent 66%);
+      transform: rotate(-10deg);
+    }
+
+    /* Four quadrant */
+    .quad{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      height: 100%;
+    }
+
+    .quad .q{
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quad .q::after{
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(540px 220px at 20% 0%, rgba(59,130,246,.14), transparent 60%);
+      opacity: .85;
+      pointer-events: none;
+    }
+
+    .quad .q > *{ position: relative; }
+
+    .q h3{ margin: 10px 0 6px 0; }
+    .q p{ font-size: .98rem; }
+
+    /* Comparison table */
+    table.comp{
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+    }
+    table.comp th, table.comp td{
+      padding: 14px 14px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    table.comp th{
+      color: var(--text);
+      font-size: .95rem;
+      background: rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    table.comp td{
+      color: var(--muted);
+      font-size: .98rem;
+      line-height: 1.55;
+    }
+    table.comp tr:last-child td{ border-bottom: 0; }
+
+    .tag{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--faint);
+      font-size: .82rem;
+    }
+
+    /* Flow lane */
+    .lanes{
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .lane-labels{
+      display: grid;
+      gap: 10px;
+    }
+
+    .lane-label{
+      height: 64px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .lane-label.pm{ border-color: rgba(59,130,246,.28); }
+    .lane-label.dev{ border-color: rgba(34,197,94,.28); }
+    .lane-label.qa{ border-color: rgba(245,158,11,.28); }
+
+    .lane-body{
+      display: grid;
+      gap: 10px;
+    }
+
+    .steps{
+      display: grid;
+      gap: 10px;
+    }
+
+    .step{
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+    }
+
+    .step .n{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: #07101f;
+      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.75));
+      border: 1px solid rgba(255,255,255,.35);
+    }
+
+    .step .t{ color: var(--text); font-weight: 700; margin-bottom: 4px; }
+    .step .d{ color: var(--muted); font-size: .96rem; line-height: 1.45; }
+
+    /* Screenshot */
+    figure.shot{
+      margin: 0;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      overflow: hidden;
+      background: rgba(0,0,0,.25);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    figure.shot img{
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    figure.shot figcaption{
+      position: absolute;
+      left: 12px;
+      bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.35);
+      color: rgba(255,255,255,.80);
+      font-size: .8rem;
+      backdrop-filter: blur(6px);
+    }
+
+    /* QA bubbles */
+    .chat{
+      display: grid;
+      gap: 14px;
+    }
+    .bubble{
+      max-width: 92%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      line-height: 1.55;
+      position: relative;
+    }
+
+    .bubble.q{
+      justify-self: start;
+      border-color: rgba(59,130,246,.28);
+      background: rgba(59,130,246,.10);
+    }
+
+    .bubble.a{
+      justify-self: end;
+      border-color: rgba(34,197,94,.26);
+      background: rgba(34,197,94,.10);
+    }
+
+    .bubble .who{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: .86rem;
+      color: rgba(255,255,255,.78);
+    }
+
+    .bubble .who .chip{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: .95;
+    }
+
+    /* Footer hint */
+    .footnote{
+      margin-top: 12px;
+      color: rgba(255,255,255,.55);
+      font-size: .86rem;
+    }
+
+    /* Slide number style */
+    .reveal .slide-number{
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,.80);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Reduce Reveal defaults */
+    .reveal a{ color: #93C5FD; }
+    .reveal a:hover{ color: #BFDBFE; }
+
+    /* Make sure content fits typical 16:9 projectors */
+    @media (max-width: 1100px){
+      .cover .hero{ grid-template-columns: 1fr; min-height: auto; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-4{ grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 封面页 -->
+      <section class="cover">
+        <div class="hero">
+          <div>
+            <div class="kicker"><span class="dot"></span><span>数字化研发体系 · 研发效能提升</span></div>
+            <h1 class="title">云效：打造高效能驱动的数字化研发体系</h1>
+            <p class="subtitle">研发流程标准化与协作效能提升方案</p>
+            <div class="meta">
+              <span class="badge">汇报：<strong>研发一部 · 杨金奎</strong></span>
+              <span class="badge">比例：16:9</span>
+              <span class="badge">交付：HTML + Reveal.js（CDN）</span>
+            </div>
+          </div>
+          <div class="right">
+            <div class="ring"></div>
+            <div class="orb" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第1页：痛点分析 -->
+      <section>
+        <div class="slide-head">
+          <div class="slide-title">
+            <div class="pill"><span class="bar"></span><span>现状洞察</span></div>
+            <h2>当前研发流程的常见挑战（痛点分析）</h2>
+          </div>
+          <span class="tag">核心观点：传统协作模式已成为业务增长的瓶颈</span>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div style="display:flex;gap:14px;align-items:flex-start;">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 7h10M7 12h6M7 17h10" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
+                  <path d="M4.5 6.5l2-2 2 2M19.5 17.5l-2 2-2-2" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+                </svg>
+              </div>
+              <div>
+                <h3>协作混乱</h3>
+                <p><strong>信息孤岛</strong>与跨部门割裂：沟通靠吼，进度靠问。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="display:flex;gap:14px;align-items:flex-start;">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="white" stroke-width="1.8" opacity="0.9"/>
+                  <path d="M8 8h8M8 12h8M8 16h5" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+                  <path d="M16.2 16.2l2.8 2.8" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+                </svg>
+              </div>
+              <div>
+                <h3>交付混乱</h3>
+                <p>缺乏明确规划与交付节奏：需求堆积，发布全靠加班顶。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="display:flex;gap:14px;align-items:flex-start;">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 19V5" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+                  <path d="M4 19H20" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+                  <path d="M7 15l3-4 3 2 4-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+                  <path d="M18 7h2v2" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+                </svg>
+              </div>
+              <div>
+                <h3>度量缺失</h3>
+                <p>效能无法量化：产出“黑盒化”，改进无据可依。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px;">
+          <div style="display:flex;justify-content:space-between;gap:18px;align-items:center;">
+            <div>
+              <h3 style="margin:0 0 6px 0;">我们需要从“追进度”转向“交付可预测”</h3>
+              <p style="margin:0;">以标准化流程 + 一站式协作平台，降低沟通成本，提升端到端交付效率。</p>
+            </div>
+            <div class="badge" style="border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08);color:rgba(255,255,255,.78);">
+              紧迫性：高
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第2页：核心价值 -->
+      <section>
+        <div class="slide-head">
+          <div class="slide-title">
+            <div class="pill"><span class="bar"></span><span>解决方案</span></div>
+            <h2>云效带来的核心价值</h2>
+          </div>
+          <span class="tag">核心观点：从工具集成到价值流交付的一站式进化</span>
+        </div>
+
+        <div class="grid-2 equal">
+          <div class="card">
+            <h3 style="margin-bottom:10px;">一站式 · 全链路闭环</h3>
+            <p style="margin-top:0;">打通需求、开发、测试、部署、运维的端到端协作，减少“跨系统搬运”。</p>
+            <div class="quad" style="margin-top:14px;">
+              <div class="q">
+                <div style="display:flex;gap:12px;align-items:center;">
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 7h10v10H7z" stroke="white" stroke-width="1.8" opacity="0.9"/>
+                      <path d="M4 4h6M14 4h6M4 20h6M14 20h6" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.75"/>
+                    </svg>
+                  </div>
+                  <h3>一站式</h3>
+                </div>
+                <p>需求-研发-测试-发布全链路贯通</p>
+              </div>
+              <div class="q">
+                <div style="display:flex;gap:12px;align-items:center;">
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 7h8M8 12h8M8 17h5" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+                      <path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="white" stroke-width="1.8" opacity="0.9"/>
+                    </svg>
+                  </div>
+                  <h3>可视化</h3>
+                </div>
+                <p>过程可追溯，进展像物流一样透明</p>
+              </div>
+              <div class="q">
+                <div style="display:flex;gap:12px;align-items:center;">
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 12l3 3 7-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+                      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z" stroke="white" stroke-width="1.8" opacity="0.75"/>
+                    </svg>
+                  </div>
+                  <h3>自动化</h3>
+                </div>
+                <p>告别重复手工操作，CI/CD持续交付</p>
+              </div>
+              <div class="q">
+                <div style="display:flex;gap:12px;align-items:center;">
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 19V5" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+                      <path d="M4 19H20" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+                      <path d="M8 14V10M12 16V8M16 12V6" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.95"/>
+                    </svg>
+                  </div>
+                  <h3>数据驱动</h3>
+                </div>
+                <p>数据自动采集，用客观指标持续改进</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:8px;">“价值流交付”视角</h3>
+            <p style="margin-top:0;">把关注点从“人忙不忙”升级为“端到端交付是否顺畅”。</p>
+            <div style="margin-top:14px; display:grid; gap:12px;">
+              <div class="step" style="grid-template-columns: 1fr;">
+                <div class="t">全链路：减少等待</div>
+                <div class="d">需求澄清、开发实现、测试验收、发布上线相互联动，缩短反馈环。</div>
+              </div>
+              <div class="step" style="grid-template-columns: 1fr;">
+                <div class="t">自动化：减少浪费</div>
+                <div class="d">把可重复、可标准化的动作交给流水线，释放工程师创造力。</div>
+              </div>
+              <div class="step" style="grid-template-columns: 1fr;">
+                <div class="t">可视化 + 度量：持续改进</div>
+                <div class="d">透明化现状，定位瓶颈，把改进落到数据上。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第3页：核心模块与职责 -->
+      <section>
+        <div class="slide-head">
+          <div class="slide-title">
+            <div class="pill"><span class="bar"></span><span>工具支撑</span></div>
+            <h2>云效核心模块与角色职责</h2>
+          </div>
+          <span class="tag">核心观点：合理的模块分工是规范化管理的基础</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="margin-bottom:12px;">模块对比（职责 × 价值）</h3>
+            <table class="comp" role="table" aria-label="云效模块对比">
+              <thead>
+                <tr>
+                  <th style="width:22%;">模块</th>
+                  <th style="width:38%;">功能</th>
+                  <th style="width:40%;">价值</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>项目协同 (Projex)</strong></td>
+                  <td>迭代规划、工作项管理、自动化引擎</td>
+                  <td>固化流程、减少手工操作、量化交付效率</td>
+                </tr>
+                <tr>
+                  <td><strong>知识库 (Thoughts)</strong></td>
+                  <td>结构化文档、项目关联、深度搜索</td>
+                  <td>沉淀团队资产、降低沟通成本、助力新人快速上手</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="footnote">建议：将“流程/数据/知识”三类资产沉淀到平台，减少个人化、口口相传式协作。</p>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:10px;">角色职责（落到行为）</h3>
+            <div style="display:grid;gap:12px;">
+              <div class="step" style="grid-template-columns: 1fr;">
+                <div class="t">PM / 需求负责人</div>
+                <div class="d">以Story驱动协作：清晰描述、补齐验收标准（AC），保障范围与优先级稳定。</div>
+              </div>
+              <div class="step" style="grid-template-columns: 1fr;">
+                <div class="t">开发（前后端）</div>
+                <div class="d">任务拆解与状态更新：让“当前在做什么/风险是什么”可见可追踪。</div>
+              </div>
+              <div class="step" style="grid-template-columns: 1fr;">
+                <div class="t">测试 / QA</div>
+                <div class="d">用例与缺陷闭环：缺陷与需求/代码关联，降低定位成本，提升回归效率。</div>
+              </div>
+              <div class="step" style="grid-template-columns: 1fr;">
+                <div class="t">交付 / 运维</div>
+                <div class="d">发布可控可回溯：以流水线与可追溯记录支撑稳定上线。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第4页：端到端协作流程示例 -->
+      <section>
+        <div class="slide-head">
+          <div class="slide-title">
+            <div class="pill"><span class="bar"></span><span>实战模拟</span></div>
+            <h2>端到端协作流程示例（实战模拟）</h2>
+          </div>
+          <span class="tag">核心观点：需求驱动，全员高效协同</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="margin-bottom:10px;">从Story到发布：泳道式协作拆解</h3>
+            <div class="lanes" style="margin-top:10px;">
+              <div class="lane-labels" aria-hidden="true">
+                <div class="lane-label pm">PM</div>
+                <div class="lane-label dev">DEV</div>
+                <div class="lane-label qa">QA</div>
+              </div>
+
+              <div class="lane-body">
+                <div class="steps">
+                  <div class="step">
+                    <div class="n">1</div>
+                    <div>
+                      <div class="t">需求定义</div>
+                      <div class="d">PM创建Story：<strong>账户安全升级</strong>，附原型与详细描述。</div>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <div class="n">2</div>
+                    <div>
+                      <div class="t">需求澄清</div>
+                      <div class="d">澄清会对齐范围与验收标准（AC），消除歧义与返工。</div>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <div class="n">3</div>
+                    <div>
+                      <div class="t">任务拆解</div>
+                      <div class="d">开发将Story拆为后端/前端Task，明确负责人、工期与依赖。</div>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <div class="n">4</div>
+                    <div>
+                      <div class="t">执行跟踪</div>
+                      <div class="d">状态流转：待处理 → 处理中 → 已完成；风险与阻塞即时暴露。</div>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <div class="n">5</div>
+                    <div>
+                      <div class="t">质量保障</div>
+                      <div class="d">测试按需求执行用例，缺陷与任务关联，快速定位与回归。</div>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <div class="n">6</div>
+                    <div>
+                      <div class="t">闭环发布</div>
+                      <div class="d">测试通过后按流程上线发布，形成端到端可追溯记录。</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:16px;">
+            <h3 style="margin-bottom:10px;">过程可视化示例：任务状态看板</h3>
+            <figure class="shot" style="height: 520px;">
+              <img src="端到端协作流程示例.png" alt="端到端协作流程示例（看板截图）" style="object-position: 55% 15%;" />
+              <figcaption>截图：看板聚焦（建议演示时强调“状态列”与“负责人/进度”）</figcaption>
+            </figure>
+            <p class="footnote">说明：演示时可强调“每个工作项都有负责人 + 状态 + 进度”，减少口头追问。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第5页：效能度量 -->
+      <section>
+        <div class="slide-head">
+          <div class="slide-title">
+            <div class="pill"><span class="bar"></span><span>效能度量</span></div>
+            <h2>3 个维度跟进项目的运作状况</h2>
+          </div>
+          <span class="tag">核心观点：数字化看板，让项目管理“有迹可循”</span>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3 style="margin-bottom:8px;">看整体状况</h3>
+            <p style="margin-top:0;">关注项目健康度，快速识别瓶颈环节：<strong>谁在堵塞？</strong></p>
+            <ul>
+              <li>阻塞/等待时间暴露</li>
+              <li>跨角色协作效率可见</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom:8px;">看交付趋势</h3>
+            <p style="margin-top:0;">监控迭代速率、缺陷密度，让质量与节奏可预测。</p>
+            <ul>
+              <li>燃尽/吞吐趋势</li>
+              <li>缺陷与返工趋势</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom:8px;">看资源投入</h3>
+            <p style="margin-top:0;">了解成员负荷，确保核心资源投入在高优先级事项。</p>
+            <ul>
+              <li>人力负载均衡</li>
+              <li>关键岗位风险预警</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px; padding:16px;">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:18px;">
+            <div>
+              <h3 style="margin:0 0 6px 0;">示例：项目工时/投入仪表盘</h3>
+              <p style="margin:0;">以数据代替“感觉”，把改进聚焦到最关键的瓶颈处。</p>
+            </div>
+            <span class="badge" style="border-color:rgba(34,197,94,.28);background:rgba(34,197,94,.08);color:rgba(255,255,255,.80);">数据自动采集 · 看板自动更新</span>
+          </div>
+
+          <figure class="shot" style="height: 330px; margin-top: 12px;">
+            <img src="3 个维度跟进项目的运作状况.png" alt="3 个维度跟进项目的运作状况（仪表盘截图）" style="object-position: 50% 35%;" />
+            <figcaption>截图：工时概览 / 投入排名 / 类别分布 / 时间分布</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 第6页：QA问答 -->
+      <section>
+        <div class="slide-head">
+          <div class="slide-title">
+            <div class="pill"><span class="bar"></span><span>结束</span></div>
+            <h2>谢谢 · Q&A（现场答疑）</h2>
+          </div>
+          <span class="tag">核心观点：引入工具不是增加负担，而是为了更专注的创造</span>
+        </div>
+
+        <div class="card">
+          <div class="chat">
+            <div class="bubble q">
+              <div class="who" style="color:#93C5FD;"><span class="chip"></span><strong>Q：</strong>Excel挺好，为什么要换？</div>
+            </div>
+
+            <div class="bubble q">
+              <div class="who" style="color:#93C5FD;"><span class="chip"></span><strong>Q：</strong>流程变复杂了，记录工作量增加了，对我有什么好处？</div>
+            </div>
+
+            <div class="bubble q">
+              <div class="who" style="color:#93C5FD;"><span class="chip"></span><strong>Q：</strong>这个工具能生成那么多报表，会不会变成‘监控’我们、追责的工具?</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/reveal.js/5.2.1/reveal.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script> -->
+  <script>
+    // Reveal.js initialization
+    Reveal.initialize({
+      hash: true,
+      controls: true,
+      progress: true,
+      center: false,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      slideNumber: 'c/t',
+      navigationMode: 'default',
+      width: 1280,
+      height: 720,
+      margin: 0.06,
+      minScale: 0.2,
+      maxScale: 1.2
+    });
+  </script>
+</body>
+</html>
